@@ -1,10 +1,12 @@
 package com.demo.service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.demo.controller.ResultEntity;
 import com.demo.entity.User;
 import com.demo.repository.UserRepository;
 
@@ -22,6 +24,28 @@ public class UserService {
 			e.printStackTrace();
 		} 
 		return userList;
+	}
+	
+	public User getUser(final BigInteger id){
+		User user = null;
+		try {
+			user = userRepository.findOne(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return user;
+	}
+	
+	public ResultEntity<Boolean> addUser(final User user){
+		ResultEntity<Boolean> response = new ResultEntity<Boolean>();
+		try {
+			userRepository.save(user);
+			response.setSuccess(true);
+		} catch (Exception e) {
+			response.setSuccess(false);
+			response.setStatusMsg(e.getMessage());
+		} 
+		return response;
 	}
 	
 	

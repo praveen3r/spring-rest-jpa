@@ -8,6 +8,4 @@ import com.demo.entity.User;
 
 public interface UserRepository extends JpaRepository<User, BigInteger> {
 	
-	
-	
 }
