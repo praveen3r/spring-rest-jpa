@@ -29,7 +29,7 @@ public class UserService {
 	public User getUser(final BigInteger id){
 		User user = null;
 		try {
-			user = userRepository.findOne(id);
+			user = (userRepository.findById(id)).get();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
