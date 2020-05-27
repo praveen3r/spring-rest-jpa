@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.demo.controller.ResultEntity;
@@ -16,9 +17,11 @@ public class UserService {
 	@Autowired
 	UserRepository userRepository;
 	
-	public List<User> getUsers(){
+	public List<User> getUsers(Authentication authentication){
 		List<User> userList = null;
 		try {
+			String detailValue = (String)authentication.getDetails();
+			System.out.println(detailValue);
 			userList = userRepository.findAll();
 		} catch (Exception e) {
 			e.printStackTrace();

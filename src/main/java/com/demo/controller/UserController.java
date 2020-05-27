@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +23,8 @@ public class UserController {
 	
 	//http://localhost:8080/demo-api/users
 	@RequestMapping(value = "users", method = RequestMethod.GET)
-	public List<User> getUsers(){
-		return userService.getUsers();
+	public List<User> getUsers(Authentication authentication){
+		return userService.getUsers(authentication);
 	}
 	
 	//http://localhost:8080/demo-api/users
